@@ -1,5 +1,5 @@
 [test-plan-checklist.md](https://github.com/user-attachments/files/27861932/test-plan-checklist.md)
-# Тест-план и Чек-лист
+# Тест-план 
 ## Мобильное приложение (iOS/Android)
 
 ---
