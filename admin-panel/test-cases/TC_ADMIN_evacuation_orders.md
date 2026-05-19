@@ -1,138 +1,98 @@
-# 🚛 Test Cases — Evacuation Order Management
+# Test Cases — Evacuation Order Management
 
-**Project:** Mobile App for Drivers (Admin Panel)  
-**Module:** Управление заявками на эвакуатор  
-**Tester:** Svetlana  
-**Version:** 1.0
-
----
-
-## Table of Contents
-
-- [TC-ADMIN-EVA-001 — Отображение новой заявки в списке](#tc-admin-eva-001)
-- [TC-ADMIN-EVA-002 — Просмотр детальной информации по заявке](#tc-admin-eva-002)
-- [TC-ADMIN-EVA-003 — Передача заявки в отдел эвакуации](#tc-admin-eva-003)
-- [TC-ADMIN-EVA-004 — Повторная передача уже отправленной заявки](#tc-admin-eva-004)
-- [TC-ADMIN-EVA-005 — Фильтрация заявок по статусу](#tc-admin-eva-005)
-- [TC-ADMIN-EVA-006 — Отображение геолокации на карте](#tc-admin-eva-006)
-- [TC-ADMIN-EVA-007 — Обработка заявки при потере соединения](#tc-admin-eva-007)
+**Application:** Road Assistance Mobile App (Admin Panel)  
+**Feature:** Evacuation Order Management  
+**Type:** Functional, Manual  
+**Author:** Svetlana Rakhmaeva
 
 ---
 
-<a name="tc-admin-eva-001"></a>
-## TC-ADMIN-EVA-001: Отображение новой заявки в списке
+## TC-ADMIN-EVA-001 — New order appears in the list
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | High |
-| **Type**         | Functional |
-| **Preconditions**| Сотрудник авторизован с ролью «Поддержка». Пользователь мобильного приложения оформил заявку на эвакуатор. |
+**Preconditions:** Operator is logged in with the "Support" role. A user has submitted an evacuation request in the mobile app.  
+**Priority:** High
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Перейти в раздел «Заявки на эвакуатор» | Раздел открывается, список заявок отображается |
-| 2 | Проверить, появилась ли новая заявка в списке | Заявка отображается со статусом «Новая», содержит: имя, телефон, адрес, время создания; визуально выделена как необработанная |
+| 1 | Navigate to the "Evacuation Orders" section | The section opens, the order list is displayed |
+| 2 | Check whether the new order has appeared in the list | The order is displayed with status "New" and includes: user name, phone number, address, and creation time. New orders are visually highlighted |
 
 ---
 
-<a name="tc-admin-eva-002"></a>
-## TC-ADMIN-EVA-002: Просмотр детальной информации по заявке
+## TC-ADMIN-EVA-002 — View full order details
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | High |
-| **Type**         | Functional |
-| **Preconditions**| В списке есть хотя бы одна заявка. |
+**Preconditions:** At least one order exists in the list.  
+**Priority:** High
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Нажать на заявку в списке | Открывается карточка заявки |
-| 2 | Просмотреть содержимое карточки | Отображаются: ФИО, телефон, адрес, комментарий пользователя, геолокация на карте |
-| 3 | Проверить наличие кнопок действий | Доступны кнопки: «Взять в работу», «Отправить в отдел эвакуации», «Отклонить» |
+| 1 | Click on an order in the list | The order card opens |
+| 2 | Review the card content | Full details are shown: full name, phone number, address, user comment, geolocation on map |
+| 3 | Check available action buttons | Buttons are present: "Take in progress", "Send to evacuation department", "Reject" |
 
 ---
 
-<a name="tc-admin-eva-003"></a>
-## TC-ADMIN-EVA-003: Передача заявки в отдел эвакуации
+## TC-ADMIN-EVA-003 — Send order to evacuation department
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Critical |
-| **Type**         | Functional / Integration |
-| **Preconditions**| Заявка имеет статус «Новая» или «В работе». |
+**Preconditions:** The order has status "New" or "In progress".  
+**Priority:** Critical
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть карточку заявки | Карточка открывается |
-| 2 | Нажать «Отправить в отдел эвакуации» | Появляется диалог подтверждения |
-| 3 | Подтвердить действие | Статус заявки меняется на «Передана в эвакуацию» |
-| 4 | Проверить карточку заявки | Зафиксированы: имя сотрудника, время передачи. Кнопка «Отправить» стала неактивной |
+| 1 | Open the order card | The card opens |
+| 2 | Click "Send to evacuation department" | A confirmation dialog appears |
+| 3 | Confirm the action | Order status changes to "Sent to evacuation" |
+| 4 | Review the updated order card | The card shows: operator name and timestamp of the transfer. The "Send" button is now disabled |
 
 ---
 
-<a name="tc-admin-eva-004"></a>
-## TC-ADMIN-EVA-004: Повторная передача уже отправленной заявки
+## TC-ADMIN-EVA-004 — Attempt to re-send an already transferred order
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | High |
-| **Type**         | Negative |
-| **Preconditions**| Заявка имеет статус «Передана в эвакуацию». |
+**Preconditions:** The order has status "Sent to evacuation".  
+**Priority:** High
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть карточку заявки со статусом «Передана в эвакуацию» | Карточка открывается |
-| 2 | Проверить кнопку «Отправить в отдел эвакуации» | Кнопка недоступна (`disabled`) или скрыта |
-| 3 | Попытаться нажать на кнопку | Повторная отправка невозможна |
+| 1 | Open the order card with status "Sent to evacuation" | The card opens |
+| 2 | Check the state of the "Send to evacuation department" button | The button is disabled or hidden |
+| 3 | Attempt to click the button | Re-sending is not possible |
 
 ---
 
-<a name="tc-admin-eva-005"></a>
-## TC-ADMIN-EVA-005: Фильтрация заявок по статусу
+## TC-ADMIN-EVA-005 — Filter orders by status
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Medium |
-| **Type**         | Functional |
-| **Preconditions**| В системе есть заявки с разными статусами. |
+**Preconditions:** Orders with different statuses exist in the system.  
+**Priority:** Medium
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Применить фильтр «Новая» | Отображаются только заявки со статусом «Новая» |
-| 2 | Применить фильтр «В работе» | Отображаются только заявки со статусом «В работе» |
-| 3 | Применить фильтр «Передана в эвакуацию» | Отображаются только переданные заявки |
-| 4 | Сбросить все фильтры | Отображаются все заявки; счётчик обновился |
+| 1 | Apply the filter "New" | Only orders with status "New" are displayed |
+| 2 | Apply the filter "In progress" | Only orders with status "In progress" are displayed |
+| 3 | Apply the filter "Sent to evacuation" | Only transferred orders are displayed |
+| 4 | Reset all filters | All orders are displayed; the counter is updated |
 
 ---
 
-<a name="tc-admin-eva-006"></a>
-## TC-ADMIN-EVA-006: Отображение геолокации на карте
+## TC-ADMIN-EVA-006 — Display geolocation on the map
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Medium |
-| **Type**         | Functional |
-| **Preconditions**| Пользователь при создании заявки передал геолокацию. |
+**Preconditions:** The user shared their geolocation when submitting the order.  
+**Priority:** Medium
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть карточку заявки с геолокацией | На карте отображается метка с адресом пользователя; карта масштабируется |
-| 2 | Открыть карточку заявки без геолокации | Отображается текстовый адрес и сообщение «Геолокация недоступна» |
+| 1 | Open an order card that includes geolocation | A map marker is shown at the user's location; the map is zoomable |
+| 2 | Open an order card without geolocation | A text address is displayed with the message "Geolocation unavailable" |
 
 ---
 
-<a name="tc-admin-eva-007"></a>
-## TC-ADMIN-EVA-007: Обработка заявки при потере соединения
+## TC-ADMIN-EVA-007 — Handle order submission with no internet connection
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | High |
-| **Type**         | Negative |
-| **Preconditions**| Сотрудник открыл карточку заявки. |
+**Preconditions:** The operator has the order card open.  
+**Priority:** High
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть карточку заявки | Карточка открывается |
-| 2 | Отключить интернет на устройстве | — |
-| 3 | Нажать «Отправить в отдел эвакуации» | Отображается сообщение об ошибке сети. Статус заявки не изменился |
-| 4 | Восстановить соединение и повторить попытку | Данные не потеряны, действие выполняется успешно |
+| 1 | Open the order card | The card opens |
+| 2 | Disable internet on the device | — |
+| 3 | Click "Send to evacuation department" | A network error message is displayed. The order status has not changed |
+| 4 | Restore internet connection and retry | Data is preserved; the action completes successfully |
