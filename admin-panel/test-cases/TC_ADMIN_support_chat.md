@@ -1,153 +1,108 @@
-# 💬 Test Cases — Support Chat
+# Test Cases — Support Chat
 
-**Project:** Mobile App for Drivers (Admin Panel)  
-**Module:** Чат поддержки с пользователями  
-**Tester:** Svetlana  
-**Version:** 1.0
-
----
-
-## Table of Contents
-
-- [TC-ADMIN-CHAT-001 — Получение нового сообщения от пользователя](#tc-admin-chat-001)
-- [TC-ADMIN-CHAT-002 — Ответ оператора на сообщение пользователя](#tc-admin-chat-002)
-- [TC-ADMIN-CHAT-003 — Отправка пустого сообщения](#tc-admin-chat-003)
-- [TC-ADMIN-CHAT-004 — Отображение истории переписки](#tc-admin-chat-004)
-- [TC-ADMIN-CHAT-005 — Поиск диалога по имени пользователя](#tc-admin-chat-005)
-- [TC-ADMIN-CHAT-006 — Закрытие обращения](#tc-admin-chat-006)
-- [TC-ADMIN-CHAT-007 — Одновременная работа с несколькими диалогами](#tc-admin-chat-007)
-- [TC-ADMIN-CHAT-008 — Уведомление о новом сообщении из другого раздела](#tc-admin-chat-008)
+**Application:** Road Assistance Mobile App (Admin Panel)  
+**Feature:** Support Chat with Users  
+**Type:** Functional, Manual  
+**Author:** Svetlana Rakhmaeva
 
 ---
 
-<a name="tc-admin-chat-001"></a>
-## TC-ADMIN-CHAT-001: Получение нового сообщения от пользователя
+## TC-ADMIN-CHAT-001 — Receive a new message from a user
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Critical |
-| **Type**         | Functional / Integration |
-| **Preconditions**| Сотрудник авторизован. Пользователь мобильного приложения написал сообщение в чат поддержки. |
+**Preconditions:** Operator is logged in. A user has sent a message via the in-app support chat.  
+**Priority:** Critical
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Перейти в раздел «Чат поддержки» | Раздел открывается |
-| 2 | Проверить список диалогов | Новый диалог отображается с пометкой «Новое»: имя пользователя, превью сообщения, время. Счётчик непрочитанных увеличился |
+| 1 | Navigate to the "Support Chat" section | The section opens |
+| 2 | Check the conversation list | A new conversation appears marked as "New": user name, message preview, and timestamp are visible. The unread counter has increased |
 
 ---
 
-<a name="tc-admin-chat-002"></a>
-## TC-ADMIN-CHAT-002: Ответ оператора на сообщение пользователя
+## TC-ADMIN-CHAT-002 — Operator replies to a user message
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Critical |
-| **Type**         | Functional |
-| **Preconditions**| Открыт диалог с пользователем, есть входящее сообщение. |
+**Preconditions:** A conversation is open with at least one incoming message.  
+**Priority:** Critical
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть диалог с пользователем | Диалог открывается, входящее сообщение видно |
-| 2 | Ввести текст ответа в поле ввода | Текст вводится корректно |
-| 3 | Нажать «Отправить» (или Enter) | Сообщение отображается в чате со стороны оператора |
-| 4 | Проверить доставку в мобильном приложении | Пользователь получил ответ; в карточке сообщения статус «Доставлено» |
+| 1 | Open the conversation with the user | The conversation opens; the incoming message is visible |
+| 2 | Type a reply in the input field | Text is entered correctly |
+| 3 | Click "Send" or press Enter | The message is displayed in the chat on the operator's side |
+| 4 | Verify delivery in the mobile app | The user received the reply; the message status shows "Delivered" |
 
 ---
 
-<a name="tc-admin-chat-003"></a>
-## TC-ADMIN-CHAT-003: Отправка пустого сообщения
+## TC-ADMIN-CHAT-003 — Send an empty message
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Medium |
-| **Type**         | Negative |
-| **Preconditions**| Открыт диалог с пользователем. |
+**Preconditions:** A conversation is open.  
+**Priority:** Medium
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Оставить поле ввода пустым | Кнопка «Отправить» неактивна |
-| 2 | Нажать кнопку «Отправить» или Enter | Сообщение не отправлено; никаких уведомлений пользователю не поступает |
+| 1 | Leave the input field empty | The "Send" button is inactive |
+| 2 | Click "Send" or press Enter | The message is not sent; no notification is triggered for the user |
 
 ---
 
-<a name="tc-admin-chat-004"></a>
-## TC-ADMIN-CHAT-004: Отображение истории переписки
+## TC-ADMIN-CHAT-004 — View message history
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Medium |
-| **Type**         | Functional |
-| **Preconditions**| У пользователя есть история переписки (более 20 сообщений). |
+**Preconditions:** The user has a conversation history of more than 20 messages.  
+**Priority:** Medium
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть диалог с пользователем | История отображается в хронологическом порядке |
-| 2 | Прокрутить чат вверх | Старые сообщения подгружаются (lazy loading) |
-| 3 | Проверить визуальное различие сообщений | Сообщения оператора и пользователя визуально различаются |
+| 1 | Open the conversation | Message history is displayed in chronological order |
+| 2 | Scroll up | Older messages load progressively (lazy loading) |
+| 3 | Check the visual distinction between messages | Operator and user messages are visually different |
 
 ---
 
-<a name="tc-admin-chat-005"></a>
-## TC-ADMIN-CHAT-005: Поиск диалога по имени пользователя
+## TC-ADMIN-CHAT-005 — Search conversation by user name
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Medium |
-| **Type**         | Functional |
-| **Preconditions**| В системе есть несколько диалогов. |
+**Preconditions:** Multiple conversations exist in the system.  
+**Priority:** Medium
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Ввести полное имя пользователя в строку поиска | Найден нужный диалог |
-| 2 | Ввести часть имени | Отображаются все совпадения |
-| 3 | Ввести несуществующее имя | Сообщение «Ничего не найдено» |
+| 1 | Enter a full user name in the search field | The correct conversation is found |
+| 2 | Enter a partial name | All matching conversations are displayed |
+| 3 | Enter a name that does not exist | Message "Nothing found" is displayed |
 
 ---
 
-<a name="tc-admin-chat-006"></a>
-## TC-ADMIN-CHAT-006: Закрытие обращения
+## TC-ADMIN-CHAT-006 — Close a support conversation
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | Medium |
-| **Type**         | Functional |
-| **Preconditions**| Диалог с пользователем открыт, статус «В работе». |
+**Preconditions:** A conversation is open with status "In progress".  
+**Priority:** Medium
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Нажать «Закрыть обращение» | Статус диалога меняется на «Закрыто»; диалог перемещается в архив |
-| 2 | Попытаться написать в закрытый диалог | Отображается предупреждение или поле ввода заблокировано |
+| 1 | Click "Close conversation" | Status changes to "Resolved"; the conversation moves to the archive |
+| 2 | Attempt to send a message in the closed conversation | A warning is displayed or the input field is disabled |
 
 ---
 
-<a name="tc-admin-chat-007"></a>
-## TC-ADMIN-CHAT-007: Одновременная работа с несколькими диалогами
+## TC-ADMIN-CHAT-007 — Handle multiple simultaneous conversations
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | High |
-| **Type**         | Functional |
-| **Preconditions**| Несколько пользователей одновременно написали в поддержку. |
+**Preconditions:** Several users have written to support at the same time.  
+**Priority:** High
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Открыть диалог с пользователем А, ввести текст (не отправлять) | Текст введён |
-| 2 | Переключиться на диалог с пользователем Б | Контекст диалога А сохранён |
-| 3 | Вернуться к диалогу с пользователем А | Черновик сообщения на месте. Новые входящие сообщения в фоне отмечены счётчиком |
+| 1 | Open conversation with user A, type a message (do not send) | Text is entered |
+| 2 | Switch to conversation with user B | Context of conversation A is preserved |
+| 3 | Return to conversation with user A | The draft message is still in the input field. New incoming messages in the background are indicated by a counter |
 
 ---
 
-<a name="tc-admin-chat-008"></a>
-## TC-ADMIN-CHAT-008: Уведомление о новом сообщении из другого раздела
+## TC-ADMIN-CHAT-008 — Receive notification about a new message from another section
 
-| Field            | Details |
-|------------------|---------|
-| **Priority**     | High |
-| **Type**         | Functional |
-| **Preconditions**| Сотрудник находится в разделе «Заявки». Пользователь отправил сообщение в чат. |
+**Preconditions:** Operator is in the "Orders" section. A user sends a message in the chat.  
+**Priority:** High
 
 | Step | Action | Expected Result |
 |------|--------|-----------------|
-| 1 | Находиться в разделе «Заявки» (не в чате) | — |
-| 2 | Дождаться нового входящего сообщения | Появляется уведомление (тост / бейдж на иконке чата); счётчик непрочитанных увеличился |
-| 3 | Нажать на уведомление | Переход в нужный диалог |
+| 1 | Stay in the "Orders" section (not in chat) | — |
+| 2 | Wait for a new incoming message | A notification appears (toast or badge on the chat icon); the unread counter increases |
+| 3 | Click the notification | The correct conversation opens |
